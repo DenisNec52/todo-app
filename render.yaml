@@ -1,0 +1,20 @@
+# Render Blueprint: API Express (piano free).
+# Dashboard Render -> New -> Blueprint -> seleziona il repo.
+services:
+  - type: web
+    name: todo-app-api
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Render genera una stringa casuale: il server non parte senza (vedi server/src/config.js).
+      - key: JWT_SECRET
+        generateValue: true
+      # Da incollare nel form del Blueprint: non va mai committata.
+      - key: MONGO_URI
+        sync: false
