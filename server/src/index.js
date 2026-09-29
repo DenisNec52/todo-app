@@ -1,14 +1,13 @@
+import './config.js';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import morgan from 'morgan';
-import dotenv from 'dotenv';
 
 import authRoutes from './routes/authRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
-dotenv.config();
 
 const app = express();
 

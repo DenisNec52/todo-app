@@ -1,10 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 
+import { JWT_SECRET } from '../config.js';
 import { User } from '../models/User.js';
 
 const createToken = (user) =>
-  jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'changeme', {
+  jwt.sign({ id: user._id }, JWT_SECRET, {
     expiresIn: '7d',
   });
 
