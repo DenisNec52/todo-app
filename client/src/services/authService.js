@@ -14,3 +14,13 @@ export const getProfile = async (token) => {
   const { data } = await createApiClient(token).get('/auth/me');
   return data;
 };
+
+export const forgotPasswordRequest = async (payload) => {
+  const { data } = await createApiClient().post('/auth/forgot-password', payload);
+  return data;
+};
+
+export const resetPasswordRequest = async (payload) => {
+  const { data } = await createApiClient().post('/auth/reset-password', payload);
+  return data;
+};

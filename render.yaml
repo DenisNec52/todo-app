@@ -18,3 +18,17 @@ services:
       # Da incollare nel form del Blueprint: non va mai committata.
       - key: MONGO_URI
         sync: false
+      # URL del frontend usato nei link delle mail (reset password).
+      - key: APP_URL
+        value: https://todo-app-six-rho-53.vercel.app
+      # Invio mail (opzionale): senza SMTP_HOST le mail non partono ma l'app funziona.
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false

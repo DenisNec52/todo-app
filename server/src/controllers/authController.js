@@ -3,6 +3,7 @@ import { validationResult } from 'express-validator';
 
 import { JWT_SECRET } from '../config.js';
 import { User } from '../models/User.js';
+import { sendMail } from '../services/mailer.js';
 
 const createToken = (user) =>
   jwt.sign({ id: user._id }, JWT_SECRET, {
@@ -25,6 +26,14 @@ export const register = async (req, res, next) => {
 
     const user = await User.create({ name, email, password });
     const token = createToken(user);
+
+    // Mail di benvenuto: non blocca la registrazione se l'invio fallisce.
+    sendMail({
+      to: user.email,
+      subject: 'Benvenuto su Todo App',
+      text: `Ciao ${user.name}, il tuo account è stato creato. Buon lavoro!`,
+      html: `<p>Ciao ${user.name}, il tuo account è stato creato. Buon lavoro!</p>`,
+    }).catch((err) => console.error('Invio mail di benvenuto fallito', err.message));
 
     res.status(201).json({
       token,

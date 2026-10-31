@@ -61,7 +61,10 @@ const LoginPage = () => {
             {loading ? 'Accesso in corso...' : 'Accedi'}
           </Button>
         </Form>
-        <p className="mt-3 mb-0 text-center">
+        <p className="mt-3 mb-1 text-center">
+          <Link to="/forgot-password">Password dimenticata?</Link>
+        </p>
+        <p className="mb-0 text-center">
           Non hai un account? <Link to="/register">Registrati</Link>
         </p>
       </Card.Body>
